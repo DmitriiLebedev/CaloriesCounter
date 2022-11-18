@@ -1,3 +1,4 @@
+import java.util.Scanner;
 public class StepTracker {
     MonthData[] monthToData;
     Converter converter = new Converter();
@@ -7,6 +8,34 @@ public class StepTracker {
         for (int i = 0; i < monthToData.length; i++) {
             monthToData[i] = new MonthData();
         }
+    }
+    public int askMonth(Scanner scanner) {
+        System.out.println("Укажите месяц (от 0 до 11)");
+        int month = scanner.nextInt();
+        while (month < 0 || month > 11) {
+            StepTracker.error();
+            System.out.println("Укажите месяц (от 0 до 11)");
+            month = scanner.nextInt();
+        }
+        return month;
+    }
+    public int askDay(Scanner scanner) {
+        System.out.println("Укажите день");
+        int day = scanner.nextInt();
+        while (day < 1 || day > 30) {
+            StepTracker.error();
+            day = scanner.nextInt();
+        }
+        return day;
+    }
+    public int askSteps(Scanner scanner) {
+        System.out.println("Количество шагов");
+        int steps = scanner.nextInt();
+        while (steps < 0) {
+            StepTracker.error();
+            steps = scanner.nextInt();
+        }
+        return steps;
     }
     static void error() {
         System.out.println("Ошибка ввода");
